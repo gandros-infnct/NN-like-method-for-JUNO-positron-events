@@ -1,0 +1,55 @@
+\documentclass[12pt,a4paper,draft]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{appendix}
+\author{Giuseppe Andronico}
+\title{NN like method for JUNO positron events}
+\begin{document}
+\section{Description}
+ The JUNO detector is assimilable to a sphere of radius $r_CD \approx 20 m$, see Fig. \ref{fig:eventdisplay}. The main goal of the detector is to study anti neutrino decays:
+ \begin{figure}
+ \centering
+ \includegraphics[]{images/EventDisplay}
+% \includegraphics[width=0.7]{images/EventDisplay.png}
+ \caption[Event in EventDisplay]{JUNO detector with fired PMTs in an event as view from EventDisplay}
+ \label{fig:eventdisplay}
+ \end{figure}
+ \begin{enumerate}
+ \item anti neutrino interacting with a proton produce a positron and a neutron
+ \item the positron interacts with an electron in a point $A_ee = (x_ee,y_ee,z_ee)$ and both of them annihilates producing 2 gammas that will excite the liquid scintillator
+ \item the liquid scintillator will produce light in the form of a spheric wave propagating from the annihilation point towards the sphere and the photo multipliers (PMT) attached on the external sphere surface
+ \item the PMT will react with a signal proportional to the number of photons arriving on the device and in different times.
+ \end{enumerate}
+\section{Data selection for input}
+ \subsection{Note: original data}
+  Made from Yury. Description on slides 18-20 presented at January 2019 meeting. Produced with a flat distribution in positron kinetic energy, uniformly distributed inside CD. The script to generate events is \texttt{tut detsim.py}. The original files are at IHEP cluster in the path  \texttt{/afs/ihep.ac.cn/users/y/yury/spmt\_dir/yury/} in the folder \texttt{1M\_flat\_eplus}. The file with 1 million event is around 550 GB.\par
+  To reduce size datasets have been processed
+ Input come from Monte Carlo simulation, data stored on root files containing:
+ \begin{enumerate}
+ \item charge at each PMT
+ \item hit time at each PMT
+ \item PMT position.
+ \end{enumerate}
+ An attempt is:
+ \begin{enumerate}
+ \item to locate the first PMT to provide a signal and define a solid angle around this
+ \item define a fixed number of points around the central point inside the solid angle
+ \item for each of this points extract a limited number (4 or 5) of features from waveforms
+ \end{enumerate}
+\section{Selecting data from PMTs}
+We defined a strategy to extract data. The basic idea is to select a limited number of PMTS and look at the waveforms in output from this waveforms.\par
+the first step is to chosen the initial point $P_0 \equiv \left( \theta_0 , \phi_0 \right)$: we choose the first PMT to detect light. In fact the light emitted from the scintillator is isotropic, so the first PMT to detect light should be also the nearest PMT at the positron vertex.
+From this point we can consider 
+\section{Data output}
+ The information that are desired in output are:
+ \begin{itemize}
+ \item Energy
+ \item position
+ \item positron momentum ?
+ \end{itemize}
+\input{Sections/Appendix.tex}
+\end{document}

@@ -1,0 +1,37 @@
+\appendix
+\section{Angles and triangles}
+Given a sphere of radius $r$, with center in the origin, a generic point on the sphere is $P \equiv \left( x, y, z \right) \equiv \left( r, \vartheta, \varphi \right)$ where:
+\begin{align}
+    x & = r \cos\left( \vartheta \right) \sin \left( \varphi \right) \label{sphericx}\\
+    y & = r \sin\left( \vartheta \right) \sin \left( \varphi \right) \label{sphericy}\\
+    x & = r \cos \left( \varphi \right)  \label{sphericz}
+\end{align}
+$\vartheta \in \left[0,2\pi\right)$, $\varphi \in \left[0,\pi\right]$.
+
+Given 2 points on the sphere $P_1$ and $P_2$, we want to know the angle between the two radii going from $O$ to $P_1$ and from $O$ to $P_2$.
+It is an isosceles triangle with the two equal sides being two radii. Be $a$ the segment from $P_1$ to $P_2$. Using \ref{sphericx}, \ref{sphericy}, \ref{sphericz} in the distance between two points formula we get:
+\begin{equation}
+    a = r \sqrt{6 - 2 \left[ \cos \left( \vartheta_1 - \vartheta_2 \right) \sin \varphi_1 \sin \varphi_2 + \cos \varphi_1 \cos \varphi_2  \right]} \label{iso_base}
+\end{equation}
+
+In the isosceles triangle $OP_1P_2$ the angle $\hat{P_1OP_2} \equiv \alpha $ and the two basis angles $\hat{OP_1P_2} \equiv \hat{OP_2P_1} \equiv \beta$ are related by
+\begin{align}
+    \beta & = \frac{\pi}{2} - \frac{\alpha}{2} \label{iso_angles}\\
+    \sin{\beta} & = \cos{\frac{\alpha}{2}} \label{iso_sin}.
+\end{align}
+Using the relation between sides and angles in a triangle, that in our case is
+\begin{equation}
+    \frac{a}{\sin{\alpha}} = \frac{r}{\sin{\beta}} \Rightarrow{} \sin{\frac{\alpha}{2}} = \frac{1}{2}\frac{a}{r} \label{iso_vangle}
+\end{equation}
+Combining \ref{iso_vangle} and \ref{iso_base}, we get
+\begin{equation}
+    \alpha = 2 \arcsin \frac{1}{2} \sqrt{6 - 2 \left[ \cos \left( \vartheta_1 - \vartheta_2 \right) \sin \varphi_1 \sin \varphi_2 + \cos \varphi_1 \cos \varphi_2  \right]}. \label{arc_on_the_sphere}
+\end{equation}
+At this point we can consider the following problem: given a point on the sphere $P_0 \equiv \left( \theta_0 , \phi_0 \right)$, we want to find the points $P_1 \equiv \left( \vartheta_1 , \varphi_1 \right)$ on the sphere that form a given arc $\psi$ with $P_0$. By using \ref{arc_on_the_sphere} we get:
+\begin{equation*}
+    \psi = 2 \arcsin \frac{1}{2} \sqrt{6 - 2 \left[ \cos \left( \theta_0 - \vartheta_1 \right) \sin \phi_0 \sin \varphi_1 + \cos \phi_0 \cos \varphi_1  \right]}
+\end{equation*}
+where $\psi,\theta_0,\phi_0$ are known and $\vartheta_1,\varphi_1$ are the unknown variables. With a bit of trigonometry and algebraic we got a relation bounding $\vartheta_1, \varphi_1$:
+\begin{equation}
+    \vartheta_1 = \theta_0 - \arccos \frac{6-4\left(\sin{\frac{1}{2}\psi}\right)^2 - \cos \phi_0 \cos \varphi_1}{\sin \phi_0 \sin \varphi_1}. \label{relation_theta_phi}
+\end{equation}
